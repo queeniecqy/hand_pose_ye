@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>HoloLens 2 Hand Gesture Recognition</title>
+    <script src="https://cdn.jsdelivr.net/npm/@microsoft/mixed-reality-commands@2.3.0/dist/MixedRealityCommands.js"></script>
+  </head>
+  <body>
+    <h1>HoloLens 2 Hand Gesture Recognition</h1>
+
+    <div id="output">
+      Waiting for hand gestures...
+    </div>
+
+    <script>
+      // Create a reference to the hand gesture recognizer
+      var recognizer = new MixedRealityCommands.GestureRecognizer();
+
+      // Attach the hand gesture recognizer to the DOM element
+      recognizer.attachToDocument(document.documentElement);
+
+      // Add a listener for the gesture recognized event
+      recognizer.addEventListener("gesturerecognized", function (event) {
+        var gesture = event.detail.gesture;
+        var output = document.getElementById("output");
+
+        switch (gesture) {
+          case MixedRealityCommands.GestureEnum.Bloom:
+            output.innerHTML = "Bloom gesture recognized";
+            break;
+          case MixedRealityCommands.GestureEnum.Menu:
+            output.innerHTML = "Menu gesture recognized";
+            break;
+          case MixedRealityCommands.GestureEnum.Select:
+            output.innerHTML = "Select gesture recognized";
+            break;
+          case MixedRealityCommands.GestureEnum.DoubleTap:
+            output.innerHTML = "Double-tap gesture recognized";
+            break;
+          case MixedRealityCommands.GestureEnum.NavigationX:
+            output.innerHTML = "Navigation X gesture recognized";
+            break;
+          case MixedRealityCommands.GestureEnum.NavigationY:
+            output.innerHTML = "Navigation Y gesture recognized";
+            break;
+          default:
+            output.innerHTML = "Unknown gesture recognized";
+            break;
+        }
+      });
+    </script>
+  </body>
+</html>
